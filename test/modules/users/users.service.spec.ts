@@ -4,10 +4,12 @@ import { User } from '../../../src/modules/users/user.entity';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateUserDto } from '../../../src/modules/users/dto/users.dto';
+import { ConfigService } from '@nestjs/config';
 
 describe('UsersService', () => {
   let service: UsersService;
   let repo: Repository<User>;
+  let config: ConfigService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,10 +26,17 @@ describe('UsersService', () => {
             merge: jest.fn(),
           },
         },
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
     service = module.get<UsersService>(UsersService);
+    config = module.get<ConfigService>(ConfigService);
     repo = module.get<Repository<User>>(getRepositoryToken(User));
   });
 
