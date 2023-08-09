@@ -71,7 +71,6 @@ export class UsersService {
       const user = await this.usersRepository.findOne({
         where: { username: changes.username },
       });
-      console.log('user: ', user);
       if (user && user.id !== id) {
         throw new BadRequestException('Username already exists');
       }
