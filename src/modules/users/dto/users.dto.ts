@@ -1,4 +1,5 @@
 import {
+  IsDate,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -43,7 +44,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiProperty({ description: `Social security number of the user.` })
   readonly ssn: string;
 
-  @IsString()
+  @IsDate()
   @IsOptional()
   @ApiProperty({ description: `Date of birth of the user.` })
   readonly date_of_birth: Date;

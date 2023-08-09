@@ -22,6 +22,7 @@ import { JwtAuthGuard } from '@modules/auth/jwt/jwt-auth.guard';
         DATABASE_NAME: Joi.string().required(),
         DATABASE_SCHEMA: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
+        NUMVERIFY_API_KEY: Joi.string().required(),
       }),
       validationOptions: {
         allowUnknown: true,

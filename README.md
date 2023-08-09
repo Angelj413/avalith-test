@@ -168,6 +168,8 @@ To run this project, you will need to add the following environment variables to
 
 `JWT_SECRET=YXZhbGl0aC10ZXN0LWFuZ2Vs`
 
+`NUMVERIFY_API_KEY=127e7af2f62ac5279ee5678b5a134f9e`
+
 ## Tech Stack
 
 **Server:** Node, NestJS, Express, JWT

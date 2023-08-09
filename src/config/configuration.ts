@@ -9,4 +9,5 @@ export default () => ({
     schema: process.env.DATABASE_SCHEMA,
   },
   jwtSecret: process.env.JWT_SECRET,
+  numVerifyApiKey: process.env.NUMVERIFY_API_KEY,
 });
