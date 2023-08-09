@@ -18,12 +18,47 @@ describe('UsersService', () => {
         {
           provide: getRepositoryToken(User),
           useValue: {
-            find: jest.fn(),
-            findOne: jest.fn(),
-            create: jest.fn(),
-            update: jest.fn(),
-            save: jest.fn(),
-            merge: jest.fn(),
+            find: jest.fn(
+              () =>
+                new Promise((resolve) =>
+                  resolve([
+                    {
+                      id: 1,
+                      username: 'testuser',
+                      password: 'testpassword',
+                    },
+                  ]),
+                ),
+            ),
+            findOne: jest.fn((id: number) => {
+              return {
+                id,
+                username: 'testuser',
+                password: 'testpassword',
+              };
+            }),
+            create: jest.fn(() => {
+              return {
+                ...new User(),
+              };
+            }),
+            update: jest.fn((id: number, user: User) => {
+              return {
+                id,
+                ...user,
+              };
+            }),
+            save: jest.fn((user: User) => {
+              return {
+                ...user,
+              };
+            }),
+            merge: jest.fn((user: User, changes: User) => {
+              return {
+                ...user,
+                ...changes,
+              };
+            }),
           },
         },
         {
