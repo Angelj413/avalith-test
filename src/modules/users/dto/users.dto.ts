@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 
 export class CreateUserDto {
@@ -23,27 +29,27 @@ export class CreateUserDto {
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: `First name of the user.` })
   readonly first_name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: `Last name of the user.` })
   readonly last_name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: `Social security number of the user.` })
   readonly ssn: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: `Date of birth of the user.` })
   readonly date_of_birth: Date;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: `Phone number of the user.` })
   readonly phone: string;
 }

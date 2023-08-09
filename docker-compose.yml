@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nestjs_app:
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: 3000
+      DATABASE_HOST: mahmud.db.elephantsql.com
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: swhaytvx
+      DATABASE_PASSWORD: fctR7eMkDz_8eBb1BHmJhkRJZ_LH7FuW
+      DATABASE_NAME: swhaytvx
+      DATABASE_SCHEMA: dev
+      JWT_SECRET: YXZhbGl0aC10ZXN0LWFuZ2Vs
