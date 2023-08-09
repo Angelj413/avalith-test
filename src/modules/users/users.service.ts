@@ -71,7 +71,7 @@ export class UsersService {
         where: { username: changes.username },
       });
       if (user) {
-        throw new Error('Username already exists');
+        throw new BadRequestException('Username already exists');
       }
     }
 
