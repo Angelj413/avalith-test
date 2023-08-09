@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from './dto/users.dto';
 import { hash } from 'bcrypt';
 import axios from 'axios';
@@ -67,10 +67,12 @@ export class UsersService {
     }
 
     if (changes.username) {
+      //find by username and if id is not the same as the one being updated
       const user = await this.usersRepository.findOne({
         where: { username: changes.username },
       });
-      if (user) {
+      console.log('user: ', user);
+      if (user && user.id !== id) {
         throw new BadRequestException('Username already exists');
       }
     }

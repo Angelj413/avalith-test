@@ -118,11 +118,17 @@ describe('UsersService', () => {
 
   describe('update', () => {
     it('should update a user', async () => {
-      const user: User = new User();
+      const user: User = {
+        id: 1,
+        username: 'testUser',
+        password: 'plainPassword',
+      } as User;
+      const changes: User = new User();
+      changes.username = 'testUser2';
       jest.spyOn(repo, 'findOne').mockResolvedValue(user);
       jest.spyOn(repo, 'merge').mockReturnValue(user);
       jest.spyOn(repo, 'save').mockResolvedValue(user);
-      expect(await service.update(1, user)).toEqual(user);
+      expect(await service.update(1, changes)).toBe(user);
     });
   });
 });
