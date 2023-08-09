@@ -154,6 +154,23 @@ This endpoint return the token for the rest of private endpoints.
 | `username` | `string` | **Required**. Username of user |
 | `password` | `string` | **Required**. Password of user |
 
+## Running Tests
+
+To run tests, run the following command:
+(Install dependecies is needed)
+
+NPM:
+
+```bash
+  npm run test
+```
+
+Yarn
+
+```bash
+  yarn test
+```
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -175,6 +192,10 @@ To run this project, you will need to add the following environment variables to
 `JWT_SECRET=YXZhbGl0aC10ZXN0LWFuZ2Vs`
 
 `NUMVERIFY_API_KEY=127e7af2f62ac5279ee5678b5a134f9e`
+
+## Features or Future Improvments:
+
+- For the future, to have admin control (responding to the request: as admin, I can retrieve all registered users and their information). I can add a role guar to manage and control which roles have access to endpoints.
 
 ## Tech Stack
 
