@@ -22,7 +22,7 @@ Install my-project with npm
   cd avalith-test
 ```
 
-    3. Install dependecies
+    3. Install dependecies (If run without Docker Compose)
 
 NPM:
 
@@ -56,7 +56,13 @@ Yarn
 
 #### Docker Compose
 
-    1. Run with docker compose
+    1. Enter inside project folder
+
+```bash
+cd avalith-test
+```
+
+    2. Run with docker compose
 
 ```bash
 docker-compose up --build
