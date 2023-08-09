@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import * as Joi from 'joi';
 import configuration from './config/configuration';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from '@modules/auth/jwt/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -13,12 +15,13 @@ import configuration from './config/configuration';
       load: [configuration],
       validationSchema: Joi.object({
         PORT: Joi.number().default(80).optional(),
-        DATABASE_HOST: Joi.string(),
-        DATABASE_PORT: Joi.string(),
-        DATABASE_USERNAME: Joi.string(),
-        DATABASE_PASSWORD: Joi.string(),
-        DATABASE_NAME: Joi.string(),
+        DATABASE_HOST: Joi.string().required(),
+        DATABASE_PORT: Joi.string().required(),
+        DATABASE_USERNAME: Joi.string().required(),
+        DATABASE_PASSWORD: Joi.string().required(),
+        DATABASE_NAME: Joi.string().required(),
         DATABASE_SCHEMA: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
       validationOptions: {
         allowUnknown: true,
@@ -29,6 +32,11 @@ import configuration from './config/configuration';
     DatabaseModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

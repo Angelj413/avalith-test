@@ -18,12 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@schemas/*": ["src/schemas/*"],
-      "@dtos/*": ["src/dtos/*"],
-      "@utils/*": ["src/utils/*"],
-      "@enums/*": ["src/utils/enums/*"],
-      "@domains/*": ["src/domains/*"],
-      "@services/*": ["src/services/*"],
+      "@modules/*": ["src/modules/*"],
     }
   }
 }

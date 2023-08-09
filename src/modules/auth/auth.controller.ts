@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { IsPublic } from '../../decorators/public.decorator';
 
 @Controller('auth')
-export class AuthController {}
+export class AuthController {
+  @IsPublic()
+  @UseGuards(AuthGuard('local'))
+  @Post('signin')
+  signIn(@Req() request) {
+    return request.user;
+  }
+}

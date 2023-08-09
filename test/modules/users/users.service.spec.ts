@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from './users.service';
-import { User } from './user.entity';
+import { UsersService } from '../../../src/modules/users/users.service';
+import { User } from '../../../src/modules/users/user.entity';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { CreateUserDto } from '../../../src/modules/users/dto/users.dto';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -19,6 +20,8 @@ describe('UsersService', () => {
             findOne: jest.fn(),
             create: jest.fn(),
             update: jest.fn(),
+            save: jest.fn(),
+            merge: jest.fn(),
           },
         },
       ],
@@ -42,57 +45,36 @@ describe('UsersService', () => {
 
   describe('findOne', () => {
     it('should get a single user', async () => {
-      const user: User = {
-        id: 1,
-        username: 'testuser',
-        password: 'test123',
-        first_name: 'Test',
-        last_name: 'User',
-        ssn: '123456789',
-        date_of_birth: new Date(),
-        phone: '1234567890',
-        created_at: new Date(),
-        updated_at: new Date(),
-      };
+      const user: User = new User();
       jest.spyOn(repo, 'findOne').mockResolvedValue(user);
       expect(await service.findOne(1)).toEqual(user);
     });
   });
 
+  describe('findByUsername', () => {
+    it('should get a single user', async () => {
+      const user: User = new User();
+      jest.spyOn(repo, 'findOne').mockResolvedValue(user);
+      expect(await service.findByUsername('testuser')).toEqual(user);
+    });
+  });
+
   describe('create', () => {
     it('should create a user', async () => {
-      const user: User = {
-        id: 1,
-        username: 'testuser',
-        password: 'test123',
-        first_name: 'Test',
-        last_name: 'User',
-        ssn: '123456789',
-        date_of_birth: new Date(),
-        phone: '1234567890',
-        created_at: new Date(),
-        updated_at: new Date(),
+      const createUserDto: CreateUserDto = {
+        username: 'testUser',
+        password: 'plainPassword',
       };
+      const user: User = createUserDto as User;
       jest.spyOn(repo, 'create').mockReturnValue(user);
       jest.spyOn(repo, 'save').mockResolvedValue(user);
-      expect(await service.create(user)).toEqual(user);
+      expect(await service.create(user)).toBe(user);
     });
   });
 
   describe('update', () => {
     it('should update a user', async () => {
-      const user: User = {
-        id: 1,
-        username: 'testuser',
-        password: 'test123',
-        first_name: 'Test',
-        last_name: 'Updated',
-        ssn: '123456789',
-        date_of_birth: new Date(),
-        phone: '1234567890',
-        created_at: new Date(),
-        updated_at: new Date(),
-      };
+      const user: User = new User();
       jest.spyOn(repo, 'findOne').mockResolvedValue(user);
       jest.spyOn(repo, 'merge').mockReturnValue(user);
       jest.spyOn(repo, 'save').mockResolvedValue(user);

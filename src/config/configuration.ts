@@ -8,4 +8,5 @@ export default () => ({
     database: process.env.DATABASE_NAME,
     schema: process.env.DATABASE_SCHEMA,
   },
+  jwtSecret: process.env.JWT_SECRET,
 });
