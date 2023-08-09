@@ -196,6 +196,7 @@ To run this project, you will need to add the following environment variables to
 ## Features or Future Improvments:
 
 - For the future, to have admin control (responding to the request: as admin, I can retrieve all registered users and their information). I can add a role guar to manage and control which roles have access to endpoints.
+- It is necessary to add more test cases for the update user endpoint, thus validating the password and phone update
 
 ## Tech Stack
 
